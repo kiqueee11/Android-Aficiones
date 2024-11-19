@@ -16,7 +16,7 @@
             android:name=".Aficiones"
             android:exported="true"
             android:label="@string/title_activity_aficiones"
-            android:theme="@style/Theme.MisAficiones">
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
