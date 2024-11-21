@@ -3,20 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green"
-
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <TextView
-        android:id="@+id/textoDormir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:text="Lo que mas me gusta es dormir y las camas que mas me gustan son: (desliza)"
         android:textColor="@color/red"
-        android:text="Como me gusta dormir"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </TextView>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

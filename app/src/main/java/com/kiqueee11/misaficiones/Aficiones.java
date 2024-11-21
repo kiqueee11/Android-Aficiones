@@ -2,6 +2,7 @@ package com.kiqueee11.misaficiones;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.XmlResourceParser;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,9 +30,9 @@ public class Aficiones extends AppCompatActivity {
 
     private ActivityAficionesBinding binding;
 
+    private int posicion;
 
-
-
+    private String favorito = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,27 @@ public class Aficiones extends AppCompatActivity {
         ViewPager viewPager = binding.viewPager;
         viewPager.setAdapter(paginador);
 
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+               posicion = position;
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
+
         FloatingActionButton botonFlotante  = findViewById(R.id.fab);
 
         botonFlotante.setOnClickListener(new View.OnClickListener() {
@@ -50,10 +73,6 @@ public class Aficiones extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Context context = binding.getRoot().getContext();
-                Paginador paginador = new Paginador(context, getSupportFragmentManager());
-                ViewPager viewPager = binding.viewPager;
-                viewPager.setAdapter(paginador);
             }
         });
 
@@ -75,11 +94,21 @@ public class Aficiones extends AppCompatActivity {
         int id = item.getItemId();
         if (id==R.id.favButton){
             Toast.makeText(this, "Anadido a favoritos", Toast.LENGTH_SHORT).show();
-
+            if(posicion==0){
+                favorito = "comer";
+                System.out.println("comer");
+            }else{
+                favorito = "dormir";
+                System.out.println("dormir");
+            }
+            SharedPreferences preferences = getSharedPreferences("Preferencias", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("favoritos",favorito);
+            editor.apply();
         }
         if (id==R.id.aboutMeButton){
-       //     Intent intent = new Intent(Aficiones.this, SobreMi.class);
-         //   startActivity(intent);
+           Intent intent = new Intent(Aficiones.this, SobreMi.class);
+           startActivity(intent);
         }
         if (id==R.id.myCodeButton){
             Intent intent = new Intent(Intent.ACTION_VIEW);

@@ -1,4 +1,4 @@
-package com.kiqueee11.misaficiones.fr.aficiones;
+package com.kiqueee11.misaficiones.tiposComer;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,12 +11,11 @@ import androidx.fragment.app.Fragment;
 
 import com.kiqueee11.misaficiones.R;
 
-public class Dormir extends Fragment {
+public class Comidas extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_dormir, container, false);
-
+        return inflater.inflate(R.layout.fragment_comidas,container,false);
     }
 }
